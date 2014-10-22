@@ -8,9 +8,9 @@ namespace OthelloProject
 {
     class Readfile
     {
-        public static List<Person> insertPeople()
+        public static List<Person> insertPeople(string inputPath)
         {
-            System.IO.StreamReader file = new System.IO.StreamReader("C:\\friendships.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(inputPath);
         
             List<Person> personList = new List<Person>();
             Person tempPerson = new Person();

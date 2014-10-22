@@ -19,6 +19,7 @@ namespace OthelloProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            /*
             double[,] a = new double[9,9];
             a[0, 0] = 0;
             a[0, 1] = 1;
@@ -101,11 +102,11 @@ namespace OthelloProject
             a[8, 6] = 0;
             a[8, 7] = 1;
             a[8, 8] = 0;
-            cluster.clust(a);
-
-            List<Person> PersonList = Readfile.insertPeople();
-            //OurMatrix.createMatrix(PersonList);
-            
+            cluster.clust(a);*/
+            //Kaspers Path
+            List<Person> PersonList = Readfile.insertPeople("C:\\friendships.txt");
+            OurMatrix.createMatrix(PersonList);
+            int x = 0;
         }
     }
 }
