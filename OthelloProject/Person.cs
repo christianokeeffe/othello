@@ -8,11 +8,18 @@ namespace OthelloProject
 {
     class Person
     {
+        private int _id;
         private string _name;
         private List<string> _friends;
         private string _summary;
         private string _review;
-    
+        
+        public int ID
+        {
+            get { return _id; }
+            set {_id = value; }
+        }
+
         public string Name
         {
             get { return _name; }
