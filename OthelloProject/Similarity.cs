@@ -10,9 +10,10 @@ namespace OthelloProject
     {
         public static double ComputeSimilarity(Person node1, Person node2)
         {
-            var a = node1.Friends.Intersect(node2.Friends);
-            int b = a.Count();
-            return 0;
+            double top = node1.Friends.Intersect(node2.Friends).Count();
+            double bottom = Math.Sqrt(node1.Friends.Count() * node2.Friends.Count());
+            double result = top / bottom;
+            return result;
         }
     }
 }
