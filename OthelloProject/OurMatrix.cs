@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OthelloProject
 {
-    class Matrix
+    class OurMatrix
     {
     }
 }
