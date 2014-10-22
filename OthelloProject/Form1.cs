@@ -105,6 +105,10 @@ namespace OthelloProject
             cluster.clust(a);*/
             //Kaspers Path
             //List<Person> PersonList = Readfile.insertPeople("C:\\friendships.txt");
+            //Chr Path
+            List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
+            
+            cluster.clust(OurMatrix.createMatrix(PersonList));
             //Kasper Test path
             List<Person> PersonList = Readfile.insertPeople("C:\\test.txt");
             OurMatrix.createMatrix(PersonList);
