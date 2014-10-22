@@ -28,7 +28,7 @@ namespace OthelloProject
             }
             if (words[0] == "friends")
             {
-               tempPerson.Friends = words[1].Split(' ').ToList();
+               tempPerson.Friends = words[1].Trim().Split(' ').ToList();
             }
             if (words[0] == "summary")
             {
