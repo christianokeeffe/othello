@@ -34,14 +34,20 @@ namespace OthelloProject
         private static List<List<int>> splitOnGab(double[,] inputMatrix)
         {
             int largestGabIndex = 0;
-            int largestGabVal = int.MaxValue;
+            double largestGabVal = double.MaxValue;
 
-            /*for (int i = 0; i < Math.Sqrt(inputMatrix.Length)-1; i++)
+            for (int i = 0; i < Math.Sqrt(inputMatrix.Length)-1; i++)
             {
-                if()
-            }*/
-
-            return null;
+                if(largestGabVal < Math.Abs(inputMatrix[i,1]-inputMatrix[i+1,1]))
+                {
+                    largestGabVal = Math.Abs(inputMatrix[i, 1] - inputMatrix[i + 1, 1]);
+                    largestGabIndex = i;
+                }
+            }
+            List<List<int>> returnList = new List<List<int>>();
+            returnList.Add(Enumerable.Range(0, largestGabIndex).ToList());
+            returnList.Add(Enumerable.Range(largestGabIndex, (int)Math.Sqrt(inputMatrix.Length) - largestGabIndex).ToList());
+            return returnList;
         }
     }
 }

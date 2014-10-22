@@ -102,10 +102,7 @@ namespace OthelloProject
             a[8, 7] = 1;
             a[8, 8] = 0;
             cluster.clust(a);
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
             List<Person> PersonList = Readfile.insertPeople();
             Person temp1 = new Person();
             Person temp2 = new Person();
