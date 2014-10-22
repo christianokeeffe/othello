@@ -11,7 +11,7 @@ namespace OthelloProject
         private string _name;
         private List<string> _friends;
         private string _summary;
-        private double _review;
+        private string _review;
     
         public string Name
         {
@@ -22,6 +22,16 @@ namespace OthelloProject
         {
             get { return _friends; }
             set { _friends = value; }
+        }
+        public string Summary
+        {
+            get { return _summary; }
+            set { _summary = value; }
+        }
+        public string Review
+        {
+            get { return _review; }
+            set { _review = value; }
         }
 
     }
