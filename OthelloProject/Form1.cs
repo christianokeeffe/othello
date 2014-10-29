@@ -110,7 +110,7 @@ namespace OthelloProject
             
             cluster.clust(OurMatrix.createMatrix(PersonList));
             //Kasper Test path
-            List<Person> PersonList = Readfile.insertPeople("C:\\test.txt");
+            //List<Person> PersonList = Readfile.insertPeople("C:\\test.txt");
             OurMatrix.createMatrix(PersonList);
         }
     }
