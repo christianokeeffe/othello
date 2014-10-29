@@ -106,12 +106,13 @@ namespace OthelloProject
             //Kaspers Path
             //List<Person> PersonList = Readfile.insertPeople("C:\\friendships.txt");
             //Chr Path
-            List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
-            
-            cluster.clust(OurMatrix.createMatrix(PersonList));
+            //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
             //Kasper Test path
-            List<Person> PersonList = Readfile.insertPeople("C:\\test.txt");
-            OurMatrix.createMatrix(PersonList);
+            //List<Person> PersonList = Readfile.insertPeople("C:\\test.txt");
+            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testreviews.txt");
+            //cluster.clust(OurMatrix.createMatrix(PersonList));
+            //OurMatrix.createMatrix(PersonList);
+            int x = 0;
         }
     }
 }
