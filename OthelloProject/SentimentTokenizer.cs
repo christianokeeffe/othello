@@ -23,5 +23,11 @@ namespace OthelloProject
         regex_strings.Add(remaining_string);
 
         }
+
+        public List<string> tokenize(string input)
+        {
+            
+            return null;
+        }
     }
 }
