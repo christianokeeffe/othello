@@ -58,33 +58,53 @@ namespace OthelloProject
             return splitOnGab(vector);
         }
 
-        private static List<List<int>> splintNumbTimes(double[,] inputMatrix, int numb)
+        public static List<List<int>> splintNumbTimes(double[,] inputMatrix, int numb)
         {
             List<List<int>> lists = new List<List<int>>();
             List<int> tmpList = new List<int>(); ;
             for (int i = 0; i < Math.Sqrt(inputMatrix.Length);i++ )
             {
-                tmpList.Add(1);
+                tmpList.Add(i);
             }
             lists.Add(tmpList);
 
             for (int i = 0; i < numb; i++)
             {
-                for(int j = 0; j < lists.Count; j++)
+                List<List<int>> oldlist = lists;
+                lists = new List<List<int>>();
+                for (int j = 0; j < oldlist.Count; j++)
                 {
-                    double[,] matrixToClust = new double[lists[j].Count, lists[j].Count];
-                    for(int q = 0; q < lists[j].Count; q++)
+                    if (oldlist[j].Count > 1)
                     {
-                        for (int n = 0; n < Math.Sqrt(inputMatrix.Length); n++ )
+                        double[,] matrixToClust = new double[oldlist[j].Count, oldlist[j].Count];
+                        for (int q = 0; q < oldlist[j].Count; q++)
                         {
+                            for (int n = 0; n < oldlist[j].Count; n++)
+                            {
+                                matrixToClust[q, n] = inputMatrix[oldlist[j][q], oldlist[j][n]];
+                            }
+                        }
 
+                        List<List<int>> result = clust(matrixToClust);
+                        for (int q = 0; q < result.Count; q++)
+                        {
+                            List<int> listToAdd = new List<int>();
+                            for (int n = 0; n < result[q].Count; n++)
+                            {
+                                listToAdd.Add(oldlist[j][result[q][n]]);
+                            }
+                            lists.Add(listToAdd);
                         }
                     }
-
-                    List<List<int>> result = clust(inputMatrix);
+                    else
+                    {
+                        List<int> listToAdd = new List<int>();
+                        listToAdd.Add(oldlist[j][0]);
+                        lists.Add(listToAdd);
+                    }
                 }
             }
-            return null;
+            return lists;
         }
 
         private static List<List<int>> splitOnGab(double[] inputvector)
