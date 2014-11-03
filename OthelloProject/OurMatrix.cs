@@ -14,7 +14,7 @@ namespace OthelloProject
             {
                 for (int j = i; j < input.Count(); j++)
                 {
-                    if (input[i].ID == input[j].ID)
+                    /*if (input[i].ID == input[j].ID)
                     {
                         matrix[input[i].ID, input[j].ID] = 0;
                     }
@@ -23,8 +23,12 @@ namespace OthelloProject
                         double weight = Similarity.ComputeSimilarity(input[i], input[j]);
                         matrix[input[i].ID, input[j].ID] = weight;
                         matrix[input[j].ID, input[i].ID] = weight;
+                    }*/
+                    if (input[i].Friends.Contains(input[j].Name))
+                    {
+                        matrix[i, j] = 1;
+                        matrix[j, i] = 1;
                     }
-
                 }
             }
 

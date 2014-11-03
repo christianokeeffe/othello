@@ -11,7 +11,7 @@ namespace OthelloProject
         public static List<Person> insertPeople(string inputPath)
         {
             System.IO.StreamReader file = new System.IO.StreamReader(inputPath);
-        
+            char[] splitter = new char[] {' ','\t'};
             List<Person> personList = new List<Person>();
             Person tempPerson = new Person();
             int IDcounter = 0;
@@ -27,7 +27,7 @@ namespace OthelloProject
                 }
                 if (words[0] == "friends")
                 {
-                   tempPerson.Friends = words[1].Trim().Split(' ').ToList();
+                   tempPerson.Friends = words[1].Trim().Split(splitter).ToList();
                 }
                 if (words[0] == "summary")
                 {
