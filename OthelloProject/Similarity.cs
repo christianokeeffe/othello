@@ -13,7 +13,14 @@ namespace OthelloProject
             double top = node1.Friends.Intersect(node2.Friends).Count();
             double bottom;
             if(node1.Friends.Contains(node2.Name)){
-                bottom = Math.Sqrt((node1.Friends.Count()-1) * (node2.Friends.Count()-1));
+                if (node1.Friends.Count == 1 || node2.Friends.Count == 1)
+                {
+                    return 5;
+                }
+                else
+                {
+                    bottom = 5 + Math.Sqrt((node1.Friends.Count() - 1) * (node2.Friends.Count() - 1));
+                }
             }
             else 
             { 

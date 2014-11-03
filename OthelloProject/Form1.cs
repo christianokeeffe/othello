@@ -111,7 +111,9 @@ namespace OthelloProject
             cluster.clust(OurMatrix.createMatrix(PersonList));
             //Kasper Test path
             //List<Person> PersonList = Readfile.insertPeople("C:\\test.txt");
-            OurMatrix.createMatrix(PersonList);
+            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testreviews.txt");
+            //cluster.clust(OurMatrix.createMatrix(PersonList));
+            //OurMatrix.createMatrix(PersonList);
         }
     }
 }
