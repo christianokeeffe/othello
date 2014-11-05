@@ -17,14 +17,58 @@ namespace OthelloProject
                 }
             }
         }
-
-        public static void computeBuying(List<Person> PersonList)
+        private static bool sameCluster(List<List<int>> clusters, int ID1, int ID2)
+        {
+            int i = 0;
+            int cluster1 = -1;
+            int cluster2 = -1;
+            while (cluster1 == -1 || cluster2 == -1)
+            {
+                if (clusters[i].Contains(ID1))
+                {
+                    cluster1 = i;
+                }
+                if (clusters[i].Contains(ID2))
+                {
+                    cluster2 = i;
+                }
+                i++;
+            }
+            return cluster1 == cluster2;
+        }
+        public static void computeBuying(List<Person> PersonList, List<List<int>> clusters)
         {
             foreach (Person person in PersonList)
             {
                 if (!person.HaveReview)
                 {
-                    //predict
+                    int count = 0;
+                    int scores = 0;
+                    foreach (Person friend in person.FriendList)
+                    {
+                        if(friend.HaveReview)
+                        {
+                            if (friend.Name == "kyle" || !sameCluster(clusters, friend.ID, person.ID))
+                            {
+                                scores += friend.Score * 10;
+                                count += 10;
+                            }
+                            else
+                            {
+                                scores += friend.Score;
+                                count += 1;
+                            }
+                        }
+                    }
+                    double result = scores / count;
+                    if (result > 2.5)
+                    {
+                        person.Buying = true;
+                    }
+                    else
+                    {
+                        person.Buying = false;
+                    }
                 }
             }
         }
@@ -37,5 +81,3 @@ namespace OthelloProject
 //community will count 10 times as much as friends from within the community. Also, there is a 
 //particular convincing person –his name is “kyle”. His opinion will also count 10 times as much
 //as others opinion.
-
-//c. Report the results in the format as given above –and send it to me!
