@@ -55,12 +55,14 @@
     <Compile Include="cluster.cs" />
     <Compile Include="OurMatrix.cs" />
     <Compile Include="Person.cs" />
+    <Compile Include="prob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review.cs" />
     <Compile Include="SentimentTokenizer.cs" />
     <Compile Include="Similarity.cs" />
     <Compile Include="Readfile.cs" />
+    <Compile Include="term.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
