@@ -24,7 +24,7 @@ namespace OthelloProject
             //SentimentTokenizer.tokenize("Hej :-) #altfornice #12");
 
             //*** Christian ***
-            //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
+            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\testreviews.txt");
             //List<Person> PersonList = Readfile.insertPeople("\\friendships.reviews.txt");
 
@@ -42,10 +42,27 @@ namespace OthelloProject
             Console.WriteLine("Person- and FriendList made 3/7");
             Console.ReadKey();
             List<List<int>> clusters = cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),1);
-            Console.WriteLine("Clusters made 4/7");
+            Console.WriteLine("Clusters made 3/7");
+            Console.ReadKey();*/
+            prob p = new prob(ReviewList);
+            double correct = 0;
+            double wrong = 0;
+            double correctness = 0;
+            for (int i = 0; i < 1000; i++)
+            {
+                int response = p.getClassOfReview(ReviewList[i].Text);
+                if(response == (int)ReviewList[i].Score)
+                {
+                    correct++;
+                }
+                else
+                {
+                    wrong++;
+                }
+            }
+            correctness = correct / (wrong + correctness);
+            /*Console.WriteLine("Training done 4/7");
             Console.ReadKey();
-            //p.getClassOfReview(ReviewList[0].Text);
-            //p.getClassOfReview(ReviewList[1].Text);
             Scores.computeScores(p, PersonList);
             Console.WriteLine("Scores computed 5/7");
             Console.ReadKey();
@@ -54,7 +71,7 @@ namespace OthelloProject
             Console.ReadKey();
             Writefile.writeOutput(PersonList);
             Console.WriteLine("Written to file 7/7");
-            Console.ReadKey();
+            Console.ReadKey();*/
         }
     }
 }
