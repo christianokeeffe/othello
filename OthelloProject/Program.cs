@@ -19,7 +19,7 @@ namespace OthelloProject
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\testreviews.txt");
             List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\friendships2.txt");
             List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\SentimentTrainingData.txt");
-
+            
             //*** Kasper ***
             //List<Person> PersonList = Readfile.insertPeople("C:\\C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\TestSentiment.txt");
@@ -41,7 +41,8 @@ namespace OthelloProject
             Console.ReadKey();
             prob p = new prob(ReviewList);
             p.getClassOfReview(ReviewList[0].Text);
-            Console.WriteLine("Training done 4/7");
+            p.getClassOfReview(ReviewList[1].Text);
+            /*Console.WriteLine("Training done 4/7");
             Console.ReadKey();
             Scores.computeScores(p, PersonList);
             Console.WriteLine("Scores computed 5/7");

@@ -34,35 +34,38 @@ namespace OthelloProject
                         bool stop = false;
                         int startindex = posInTermList;
                         int stopindex = termList.Count;
-                        while(!stop)
+                        if (posInTermList < termList.Count && termList[posInTermList].termName != GroupedListOfReviews[i][j].Text[n])
                         {
-                            int middle = (stopindex-startindex)/2 + startindex;
-                            if (middle < termList.Count)
+                            while (!stop)
                             {
-                                int comp = GroupedListOfReviews[i][j].Text[n].CompareTo(termList[middle].termName);
-                                if (comp == 0)
+                                int middle = (stopindex - startindex) / 2 + startindex;
+                                if (middle < termList.Count)
                                 {
-                                    posInTermList = middle;
-                                    stop = true;
-                                }
-                                else if (stopindex - startindex == 0)
-                                {
-                                    posInTermList = middle;
-                                    stop = true;
-                                }
-                                else if (comp == -1)
-                                {
-                                    stopindex = middle;
+                                    int comp = GroupedListOfReviews[i][j].Text[n].CompareTo(termList[middle].termName);
+                                    if (comp == 0)
+                                    {
+                                        posInTermList = middle;
+                                        stop = true;
+                                    }
+                                    else if (stopindex - startindex == 0)
+                                    {
+                                        posInTermList = middle;
+                                        stop = true;
+                                    }
+                                    else if (comp == -1)
+                                    {
+                                        stopindex = middle;
+                                    }
+                                    else
+                                    {
+                                        startindex = middle + 1;
+                                    }
                                 }
                                 else
                                 {
-                                    startindex = middle + 1;
+                                    posInTermList = middle;
+                                    stop = true;
                                 }
-                            }
-                            else
-                            {
-                                posInTermList = middle;
-                                stop = true;
                             }
                         }
                         /*while(posInTermList < termList.Count && GroupedListOfReviews[i][j].Text[n].CompareTo(termList[posInTermList].termName) == 1)
@@ -99,14 +102,51 @@ namespace OthelloProject
 
         public double getProbOfTermInClass(string term, int classnumb)
         {
-            term foundTerm = termList.Find(x => x.termName == term);
-            if(foundTerm == null)
+            int posInTermList = 0;
+            int startindex = posInTermList;
+            int stopindex = termList.Count;
+            bool stop = false;
+            if (posInTermList < termList.Count && termList[posInTermList].termName != term)
             {
-                return 0;
+                while (!stop)
+                {
+                    int middle = (stopindex - startindex) / 2 + startindex;
+                    if (middle < termList.Count)
+                    {
+                        int comp = term.CompareTo(termList[middle].termName);
+                        if (comp == 0)
+                        {
+                            posInTermList = middle;
+                            stop = true;
+                        }
+                        else if (stopindex - startindex == 0)
+                        {
+                            posInTermList = middle;
+                            stop = true;
+                        }
+                        else if (comp == -1)
+                        {
+                            stopindex = middle;
+                        }
+                        else
+                        {
+                            startindex = middle + 1;
+                        }
+                    }
+                    else
+                    {
+                        posInTermList = middle;
+                        stop = true;
+                    }
+                }
+            }
+            if (posInTermList < termList.Count && term.CompareTo(termList[posInTermList].termName) == 0)
+            {
+                return termList[posInTermList].termProb[classnumb];
             }
             else
             {
-                return foundTerm.termProb[classnumb];
+                return 0;
             }
         }
 
