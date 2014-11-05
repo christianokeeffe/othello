@@ -11,6 +11,7 @@ namespace OthelloProject
         private int _id;
         private string _name;
         private List<string> _friends;
+        private List<Person> _friendList;
         private string _summary;
         private string _review;
         
@@ -30,6 +31,11 @@ namespace OthelloProject
             get { return _friends; }
             set { _friends = value; }
         }
+        public List<Person> FriendList
+        {
+            get { return _friendList; }
+            set { _friendList = value; }
+        }
         public string Summary
         {
             get { return _summary; }
@@ -40,6 +46,17 @@ namespace OthelloProject
             get { return _review; }
             set { _review = value; }
         }
-
+        public static void makeFriendList(List<Person> persons)
+        {
+            foreach (Person person in persons)
+            {
+                List<Person> friendList = new List<Person>();
+                foreach (string friend in person.Friends)
+                {
+                    friendList.Add(persons.Find(x => x.Name == friend));
+                }
+                person.FriendList = friendList;
+            }
+        }
     }
 }
