@@ -16,6 +16,7 @@ namespace OthelloProject
         private string _review;
         private List<string> _summaryTokens;
         private List<string> _reviewTokens;
+        private bool _haveReview = true;
         
         public int ID
         {
@@ -59,10 +60,18 @@ namespace OthelloProject
             set { _summaryTokens = value; }
         }
 
+        public bool HaveReview
+        {
+            get { return _haveReview; }
+            set { _haveReview = value; }
+        }
         public static void makeFriendList(List<Person> persons)
         {
             foreach (Person person in persons)
             {
+                if (person.Review == " *") {
+                    person.HaveReview = false;
+                }
                 List<Person> friendList = new List<Person>();
                 foreach (string friend in person.Friends)
                 {
