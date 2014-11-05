@@ -70,7 +70,7 @@ namespace OthelloProject
                 words = words.NextMatch();
             }
 
-            return returnlist;
+            return noStopWords(returnlist);
         }
         
         static bool IsAllUpper(string input)
@@ -81,6 +81,21 @@ namespace OthelloProject
                     return false;
             }
             return true;
+        }
+
+        private static List<string> noStopWords(List<string> tokens)
+        {
+            string[] stopWords = {"a", "about", "after", "again", "all", "am", "an", "and", "any", "are", "as", "at", "be", "because", "been", "before",
+            "being", "between", "both", "but", "by", "could", "did", "do", "does", "doing", "during", "each",
+            "few", "for", "from", "further", "had", "has", "have", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him",
+            "himself", "his", "how", "how's", "i", "i'm", "i've", "if", "in", "into", "is", "it", "it's", "itself", "let's", "me", "my", "myself",
+            "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "she", "she's", "should",
+            "so", "some", "such", "than", "that", "that's", "the", "their", "their's", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've",
+            "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "we", "we've", "we're", "were", "what", "what's", "when", "when's", "where", "where's",
+            "which", "while", "who", "who's", "whom", "why", "why's", "with", "would", "you", "you'd", "you'll", "you're", "you've", "your", "your's", "yourself", "yourselves"};
+            foreach (string word in stopWords)
+                tokens = tokens.FindAll(w => w != word);
+            return tokens;
         }
     }
 }
