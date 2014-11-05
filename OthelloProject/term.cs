@@ -10,5 +10,6 @@ namespace OthelloProject
     {
         public string termName;
         public List<double> termProb = new List<double>();
+        public int[] numbInClass = new int[5];
     }
 }

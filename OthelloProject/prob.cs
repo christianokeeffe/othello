@@ -18,9 +18,33 @@ namespace OthelloProject
             {
                 GroupedListOfReviews.Add(new List<Review>());
             }
-            for(int i = 0; i < listOfReviews.Count; i++)
+            for (int i = 0; i < listOfReviews.Count; i++)
             {
-                GroupedListOfReviews[(int)listOfReviews[i].Score].Add(listOfReviews[i]);
+                GroupedListOfReviews[(int)listOfReviews[i].Score-1].Add(listOfReviews[i]);
+            }
+            for(int i = 0; i < 5; i++)
+            {
+                for(int j = 0; j < GroupedListOfReviews[i].Count; j++)
+                {
+                    for(int n = 0; n < GroupedListOfReviews[i][j].Text.Count; n++)
+                    {
+                        term foundTerm = termList.Find(t => t.termName == GroupedListOfReviews[i][j].Text[n]);
+                        if (foundTerm == null)
+                        {
+                            foundTerm = new term();
+                            foundTerm.termName = GroupedListOfReviews[i][j].Text[n];
+                            termList.Add(foundTerm);
+                        }
+                        foundTerm.numbInClass[i]++;
+                    }
+                }
+            }
+            for(int i = 0; i < termList.Count; i++)
+            {
+                for(int j = 0; j < 5; j++)
+                {
+                    termList[i].termProb[j] = (termList[i].numbInClass[j] + 1) / (GroupedListOfReviews[j].Count + termList.Count);
+                }
             }
         }
 
@@ -31,16 +55,40 @@ namespace OthelloProject
 
         public double getProbOfTermInClass(string term, int classnumb)
         {
-            return termList.Find(x => x.termName == term).termProb[classnumb];
+            term foundTerm = termList.Find(x => x.termName == term);
+            if(foundTerm == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return foundTerm.termProb[classnumb];
+            }
         }
 
-        private int getClassOfReview(Review rev)
+        public int getClassOfReview(List<string> inputTokens)
         {
             List<double> scores = new List<double>();
             for(int i = 0; i < 5; i++)
             {
-
+                double score = Math.Log10(getPofClass(i));
+                for (int j = 0; j < inputTokens.Count; j++)
+                {
+                    score += Math.Log10(getProbOfTermInClass(inputTokens[j], i));
+                }
+                scores.Add(score);
             }
+            double maxval = double.MinValue;
+            int maxclass = int.MaxValue;
+            for(int i = 0; i < 5; i++)
+            {
+                if(scores[i] > maxval)
+                {
+                    maxval = scores[i];
+                    maxclass = i;
+                }
+            }
+            return maxclass+1;
         }
     }
 }
