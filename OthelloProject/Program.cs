@@ -101,8 +101,12 @@ namespace OthelloProject
             //Kaspers Path
             //List<Person> PersonList = Readfile.insertPeople("C:\\friendships.txt");
             //Chr Path
-            List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
+            //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
+            //Mette Path
+            List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Mette\\Downloads\\friendships.reviews.txt");
             Person.makeFriendList(PersonList);
+            Console.WriteLine("Så er vennelisten lavet! :D");
+            Console.ReadKey();
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
             //cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),2);
             //Kasper Test path
