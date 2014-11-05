@@ -43,16 +43,29 @@ namespace OthelloProject
                 emoticon = emoticon.NextMatch();
             }
 
-
+            bool not = false;
             Match words = Regex.Match(inputlist, @"[a-z][a-z'\-_]+[a-z]|[+\-]?\d+[,/.:-]\d+[+\-]?|[\w_]+|\.(?:\s*\.){1,}|\S");
             while (words.Success)
             {
+                if (words.Value.EndsWith("'t") || words.Value == "not")
+                {
+                    not = true;
+                }
+                if (words.Value == ".")
+                {
+                    not = false;
+                }
+                string poststring = "";
+                if(not)
+                {
+                    poststring = "_NEG";
+                }
                 if (IsAllUpper(words.Value))
                 {
-                    returnlist.Add(words.Value);
+                    returnlist.Add(words.Value + poststring);
                 }
                 else{
-                    returnlist.Add(words.Value.ToLower());
+                    returnlist.Add(words.Value.ToLower() + poststring);
                 }
                 words = words.NextMatch();
             }
