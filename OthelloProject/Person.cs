@@ -14,6 +14,8 @@ namespace OthelloProject
         private List<Person> _friendList;
         private string _summary;
         private string _review;
+        private List<string> _summaryTokens;
+        private List<string> _reviewTokens;
         
         public int ID
         {
@@ -46,6 +48,17 @@ namespace OthelloProject
             get { return _review; }
             set { _review = value; }
         }
+        public List<string> ReviewTokens
+        {
+            get { return _reviewTokens; }
+            set { _reviewTokens = value; }
+        }
+        public List<string> SummaryTokens
+        {
+            get { return _summaryTokens; }
+            set { _summaryTokens = value; }
+        }
+
         public static void makeFriendList(List<Person> persons)
         {
             foreach (Person person in persons)
