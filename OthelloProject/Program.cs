@@ -104,14 +104,26 @@ namespace OthelloProject
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
             //Mette Path
             List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Mette\\Downloads\\friendships.reviews.txt");
+            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Mette\\Desktop\\SentimentTrainingData.txt");
             Person.makeFriendList(PersonList);
             Console.WriteLine("Så er vennelisten lavet! :D");
             Console.ReadKey();
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
-            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
+            //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
             //cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),2);
             prob p = new prob(ReviewList);
             p.getClassOfReview(ReviewList[0].Text);
+
+            foreach (Person person in PersonList) {
+                if (person.HaveReview)
+                {
+                    //p.getClassOfReview(person.Review);
+                }
+                else
+                {
+                    //predict buy/not 
+                }
+            }
             int x = 0;
             //Kasper Test path
             //List<Person> PersonList = Readfile.insertPeople("C:\\C:\Users\\Kasper\\Documents\\Uni\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
