@@ -14,6 +14,8 @@ namespace OthelloProject
         private List<Person> _friendList;
         private string _summary;
         private string _review;
+        private List<string> _summaryTokens;
+        private List<string> _reviewTokens;
         private bool _haveReview = true;
         
         public int ID
@@ -47,6 +49,17 @@ namespace OthelloProject
             get { return _review; }
             set { _review = value; }
         }
+        public List<string> ReviewTokens
+        {
+            get { return _reviewTokens; }
+            set { _reviewTokens = value; }
+        }
+        public List<string> SummaryTokens
+        {
+            get { return _summaryTokens; }
+            set { _summaryTokens = value; }
+        }
+
         public bool HaveReview
         {
             get { return _haveReview; }

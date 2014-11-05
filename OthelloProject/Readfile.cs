@@ -33,9 +33,11 @@ namespace OthelloProject
                 if (words[0] == "summary")
                 {
                     tempPerson.Summary = words[1];
+                    tempPerson.SummaryTokens = SentimentTokenizer.tokenize(words[1]);
                 }
                 if (words[0] == "review")
                 {
+                    tempPerson.ReviewTokens = SentimentTokenizer.tokenize(words[1]);
                     tempPerson.Review = words[1];
                     personList.Add(tempPerson);
                 }
@@ -82,11 +84,11 @@ namespace OthelloProject
                 }
                 if (words[0] == "review/summary")
                 {
-                    tempReview.Summary = words[1].Trim().Split(' ').ToList();
+                    tempReview.Summary = SentimentTokenizer.tokenize(words[1]);
                 }
                 if (words[0] == "review/text")
                 {
-                    tempReview.Text = words[1].Trim().Split(' ').ToList();
+                    tempReview.Text = SentimentTokenizer.tokenize(words[1]);
                     reviewList.Add(tempReview);
                 }
             }
