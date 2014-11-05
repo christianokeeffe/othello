@@ -87,14 +87,14 @@ namespace OthelloProject
             {
                 for(int j = 0; j < 5; j++)
             {
-                    termList[i].termProb.Add((termList[i].numbInClass[j] + 1) / (GroupedListOfReviews[j].Count + termList.Count));
+                    termList[i].termProb.Add(((double)termList[i].numbInClass[j] + 1.0) / ((double)GroupedListOfReviews[j].Count + (double)termList.Count));
                 }
             }
         }
 
         public double getPofClass(int classnumb)
         {
-            return (GroupedListOfReviews[classnumb].Count + 1) / (listOfReviews.Count + GroupedListOfReviews.Count);
+            return ((double)GroupedListOfReviews[classnumb].Count + 1) / ((double)listOfReviews.Count + (double)GroupedListOfReviews.Count);
         }
 
         public double getProbOfTermInClass(string term, int classnumb)
