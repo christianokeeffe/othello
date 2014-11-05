@@ -109,7 +109,7 @@ namespace OthelloProject
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testreviews.txt");
             //cluster.clust(OurMatrix.createMatrix(PersonList));
             //OurMatrix.createMatrix(PersonList);
-            SentimentTokenizer.tokenize("Hej :-) #altfornice");
+            SentimentTokenizer.tokenize("Hej :-) #altfornice #12");
         }
     }
 }
