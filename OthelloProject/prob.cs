@@ -26,14 +26,61 @@ namespace OthelloProject
             {
                 for(int j = 0; j < GroupedListOfReviews[i].Count; j++)
                 {
+                    GroupedListOfReviews[i][j].Text.Sort();
+                    int posInTermList = 0;
                     for(int n = 0; n < GroupedListOfReviews[i][j].Text.Count; n++)
                     {
-                        term foundTerm = termList.Find(t => t.termName == GroupedListOfReviews[i][j].Text[n]);
-                        if (foundTerm == null)
+                        term foundTerm;
+                        bool stop = false;
+                        int startindex = posInTermList;
+                        int stopindex = termList.Count;
+                        if (posInTermList < termList.Count && termList[posInTermList].termName != GroupedListOfReviews[i][j].Text[n])
+                        {
+                            while (!stop)
+                            {
+                                int middle = (stopindex - startindex) / 2 + startindex;
+                                if (middle < termList.Count)
+                                {
+                                    int comp = GroupedListOfReviews[i][j].Text[n].CompareTo(termList[middle].termName);
+                                    if (comp == 0)
+                                    {
+                                        posInTermList = middle;
+                                        stop = true;
+                                    }
+                                    else if (stopindex - startindex == 0)
+                                    {
+                                        posInTermList = middle;
+                                        stop = true;
+                                    }
+                                    else if (comp == -1)
+                                    {
+                                        stopindex = middle;
+                                    }
+                                    else
+                                    {
+                                        startindex = middle + 1;
+                                    }
+                                }
+                                else
+                                {
+                                    posInTermList = middle;
+                                    stop = true;
+                                }
+                            }
+                        }
+                        /*while(posInTermList < termList.Count && GroupedListOfReviews[i][j].Text[n].CompareTo(termList[posInTermList].termName) == 1)
+                        {
+                            posInTermList++;
+                        }*/
+                        if (posInTermList < termList.Count && GroupedListOfReviews[i][j].Text[n].CompareTo(termList[posInTermList].termName) == 0)
+                        {
+                            foundTerm = termList[posInTermList];
+                        }
+                        else
                         {
                             foundTerm = new term();
                             foundTerm.termName = GroupedListOfReviews[i][j].Text[n];
-                            termList.Add(foundTerm);
+                            termList.Insert(posInTermList,foundTerm);
                         }
                         foundTerm.numbInClass[i]++;
                     }
@@ -43,26 +90,63 @@ namespace OthelloProject
             {
                 for(int j = 0; j < 5; j++)
             {
-                    termList[i].termProb[j] = (termList[i].numbInClass[j] + 1) / (GroupedListOfReviews[j].Count + termList.Count);
+                    termList[i].termProb.Add(((double)termList[i].numbInClass[j] + 1.0) / ((double)GroupedListOfReviews[j].Count + (double)termList.Count));
                 }
             }
         }
 
         public double getPofClass(int classnumb)
         {
-            return (GroupedListOfReviews[classnumb].Count + 1) / (listOfReviews.Count + GroupedListOfReviews.Count);
+            return ((double)GroupedListOfReviews[classnumb].Count + 1) / ((double)listOfReviews.Count + (double)GroupedListOfReviews.Count);
         }
 
         public double getProbOfTermInClass(string term, int classnumb)
         {
-            term foundTerm = termList.Find(x => x.termName == term);
-            if(foundTerm == null)
+            int posInTermList = 0;
+            int startindex = posInTermList;
+            int stopindex = termList.Count;
+            bool stop = false;
+            if (posInTermList < termList.Count && termList[posInTermList].termName != term)
             {
-                return 0;
+                while (!stop)
+                {
+                    int middle = (stopindex - startindex) / 2 + startindex;
+                    if (middle < termList.Count)
+                    {
+                        int comp = term.CompareTo(termList[middle].termName);
+                        if (comp == 0)
+                        {
+                            posInTermList = middle;
+                            stop = true;
+                        }
+                        else if (stopindex - startindex == 0)
+                        {
+                            posInTermList = middle;
+                            stop = true;
+                        }
+                        else if (comp == -1)
+                        {
+                            stopindex = middle;
+                        }
+                        else
+                        {
+                            startindex = middle + 1;
+                        }
+                    }
+                    else
+                    {
+                        posInTermList = middle;
+                        stop = true;
+                    }
+                }
+            }
+            if (posInTermList < termList.Count && term.CompareTo(termList[posInTermList].termName) == 0)
+            {
+                return termList[posInTermList].termProb[classnumb];
             }
             else
             {
-                return foundTerm.termProb[classnumb];
+                return 0;
             }
         }
 
