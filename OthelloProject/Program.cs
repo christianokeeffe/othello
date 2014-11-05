@@ -37,7 +37,7 @@ namespace OthelloProject
             //Scores.computeScores(p, PersonList);
             //Scores.computeBuying(PersonList);
 
-            //Output function !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Writefile.writeOutput(PersonList);
             
             Console.ReadKey();
         }
