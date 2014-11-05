@@ -39,8 +39,9 @@ namespace OthelloProject
             List<double> scores = new List<double>();
             for(int i = 0; i < 5; i++)
             {
-
+                
             }
+            return 0;
         }
     }
 }

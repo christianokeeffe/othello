@@ -22,16 +22,17 @@ namespace OthelloProject
             Match hashTags = Regex.Match(inputlist, @"\#+[\w_]+[\w\'_\-]*[\w_]+");
             while (hashTags.Success)
             {
+                string test = hashTags.Value;
                 returnlist.Add(hashTags.Value);
                 inputlist = inputlist.Replace(hashTags.Value, "");
-                hashTags.NextMatch();
+                hashTags = hashTags.NextMatch();
             }
             Match username = Regex.Match(inputlist, @"@[\w_]+");
             while(username.Success)
             {
                 returnlist.Add(username.Value);
                 inputlist = inputlist.Replace(username.Value, "");
-                username.NextMatch();
+                username = username.NextMatch();
             }
 
             Match emoticon = Regex.Match(inputlist, @"[<>]?[:;=8][\-o\*\']?[\)\]\(\[dDpP/\:\}\{@\|\\]|[\)\]\(\[dDpP/\:\}\{@\|\\][\-o\*\']?[:;=8][<>]?");
@@ -48,7 +49,6 @@ namespace OthelloProject
                 returnlist.Add(words.Value);
                 words = words.NextMatch();
             }
-
             return returnlist;
         }
     }

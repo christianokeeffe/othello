@@ -103,7 +103,7 @@ namespace OthelloProject
             //Chr Path
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
-            cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),2);
+            //cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),2);
             //Kasper Test path
             //List<Person> PersonList = Readfile.insertPeople("C:\\C:\Users\\Kasper\\Documents\\Uni\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testreviews.txt");
