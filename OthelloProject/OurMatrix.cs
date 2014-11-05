@@ -9,7 +9,7 @@ namespace OthelloProject
     class OurMatrix
     {
         public static double[,] createMatrix(List<Person> input) {
-            double[,] matrix = new double[input.Count(), input.Count()];
+            double[,] matrix = new double[input.Count, input.Count];
             for (int i = 0; i < input.Count(); i++)
             {
                 for (int j = i; j < input.Count(); j++)
