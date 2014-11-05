@@ -42,7 +42,7 @@ namespace OthelloProject
             for(int i = 0; i < termList.Count; i++)
             {
                 for(int j = 0; j < 5; j++)
-                {
+            {
                     termList[i].termProb[j] = (termList[i].numbInClass[j] + 1) / (GroupedListOfReviews[j].Count + termList.Count);
                 }
             }

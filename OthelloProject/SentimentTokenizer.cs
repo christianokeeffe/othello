@@ -9,10 +9,6 @@ namespace OthelloProject
 {
     class SentimentTokenizer
     {
-        Regex username_string = new Regex(@"@[\w_]+",RegexOptions.IgnoreCase);
-        Regex hashtag_string = new Regex(@"\#+[\w_]+[\w\'_\-]*[\w_]+", RegexOptions.IgnoreCase);
-
-
         public static List<string> tokenize(string input)
         {
             List<string> returnlist = new List<string>();
@@ -23,7 +19,14 @@ namespace OthelloProject
                 inputlist = input.Replace(html.Value, "");
                 html = html.NextMatch();
             }
-
+            Match hashTags = Regex.Match(inputlist, @"\#+([\w_]+[\w\'_\-]*[\w_]+|[\w])");
+            while (hashTags.Success)
+            {
+                string test = hashTags.Value;
+                returnlist.Add(hashTags.Value);
+                inputlist = inputlist.Replace(hashTags.Value, "");
+                hashTags = hashTags.NextMatch();
+            }
 
             Match emoticon = Regex.Match(inputlist, @"[<>]?[:;=8][\-o\*\']?[\)\]\(\[dDpP/\:\}\{@\|\\]|[\)\]\(\[dDpP/\:\}\{@\|\\][\-o\*\']?[:;=8][<>]?");
             while (emoticon.Success)
@@ -39,7 +42,6 @@ namespace OthelloProject
                 returnlist.Add(words.Value);
                 words = words.NextMatch();
             }
-
             return returnlist;
         }
     }

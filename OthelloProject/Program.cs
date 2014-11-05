@@ -101,7 +101,8 @@ namespace OthelloProject
             //Kaspers Path
             //List<Person> PersonList = Readfile.insertPeople("C:\\friendships.txt");
             //Chr Path
-            //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
+            List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
+            Person.makeFriendList(PersonList);
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
             List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
             //cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),2);
@@ -113,6 +114,7 @@ namespace OthelloProject
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testreviews.txt");
             //cluster.clust(OurMatrix.createMatrix(PersonList));
             //OurMatrix.createMatrix(PersonList);
+            SentimentTokenizer.tokenize("Hej :-) #altfornice #12");
         }
     }
 }
