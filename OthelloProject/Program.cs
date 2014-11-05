@@ -108,6 +108,8 @@ namespace OthelloProject
             Person.makeFriendList(PersonList);
             Console.WriteLine("Så er vennelisten lavet! :D");
             Console.ReadKey();
+            //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
+            //Person.makeFriendList(PersonList);
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
             //cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),2);
@@ -126,8 +128,8 @@ namespace OthelloProject
             }
             int x = 0;
             //Kasper Test path
-            //List<Person> PersonList = Readfile.insertPeople("C:\\C:\Users\\Kasper\\Documents\\Uni\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
-            //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testreviews.txt");
+            //List<Person> PersonList = Readfile.insertPeople("C:\\C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
+            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\TestSentiment.txt");
             //cluster.clust(OurMatrix.createMatrix(PersonList));
             //OurMatrix.createMatrix(PersonList);
             SentimentTokenizer.tokenize("Hej :-) #altfornice #12");
