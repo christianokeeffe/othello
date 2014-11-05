@@ -28,6 +28,13 @@ namespace OthelloProject
                 hashTags = hashTags.NextMatch();
             }
 
+            Match dates = Regex.Match(inputlist, @"((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))");
+            while (dates.Success)
+            {
+                inputlist = inputlist.Replace(dates.Value, "");
+                dates = dates.NextMatch();
+            }
+
             Match emoticon = Regex.Match(inputlist, @"[<>]?[:;=8][\-o\*\']?[\)\]\(\[dDpP/\:\}\{@\|\\]|[\)\]\(\[dDpP/\:\}\{@\|\\][\-o\*\']?[:;=8][<>]?");
             while (emoticon.Success)
             {
@@ -36,13 +43,44 @@ namespace OthelloProject
                 emoticon = emoticon.NextMatch();
             }
 
+            bool not = false;
             Match words = Regex.Match(inputlist, @"[a-z][a-z'\-_]+[a-z]|[+\-]?\d+[,/.:-]\d+[+\-]?|[\w_]+|\.(?:\s*\.){1,}|\S");
             while (words.Success)
             {
-                returnlist.Add(words.Value);
+                if (words.Value.EndsWith("'t") || words.Value == "not")
+                {
+                    not = true;
+                }
+                if (words.Value == ".")
+                {
+                    not = false;
+                }
+                string poststring = "";
+                if(not)
+                {
+                    poststring = "_NEG";
+                }
+                if (IsAllUpper(words.Value))
+                {
+                    returnlist.Add(words.Value + poststring);
+                }
+                else{
+                    returnlist.Add(words.Value.ToLower() + poststring);
+                }
                 words = words.NextMatch();
             }
+
             return returnlist;
+        }
+        
+        static bool IsAllUpper(string input)
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (Char.IsLetter(input[i]) && !Char.IsUpper(input[i]))
+                    return false;
+            }
+            return true;
         }
     }
 }
