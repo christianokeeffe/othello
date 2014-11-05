@@ -11,6 +11,9 @@ namespace OthelloProject
         List<Review> listOfReviews;
         List<List<Review>> GroupedListOfReviews = new List<List<Review>>();
         List<term> termList = new List<term>();
+        int listOfReviewsCount;
+        int GroupedListOfReviewsCount;
+        List<int> GroupedCounts = new List<int>();
         public prob (List<Review> listOfReviews)
         {
             this.listOfReviews = listOfReviews;
@@ -93,11 +96,19 @@ namespace OthelloProject
                     termList[i].termProb.Add(((double)termList[i].numbInClass[j] + 1.0) / ((double)GroupedListOfReviews[j].Count + (double)termList.Count));
                 }
             }
+            listOfReviewsCount = listOfReviews.Count;
+            GroupedListOfReviewsCount = GroupedListOfReviews.Count;
+            
+            foreach (List<Review> review in GroupedListOfReviews) {
+                GroupedCounts.Add(review.Count);
+            }
+            listOfReviews = null;
+            GroupedListOfReviews = null;
         }
 
         public double getPofClass(int classnumb)
         {
-            return ((double)GroupedListOfReviews[classnumb].Count + 1) / ((double)listOfReviews.Count + (double)GroupedListOfReviews.Count);
+            return ((double)GroupedCounts[classnumb] + 1) / ((double)listOfReviewsCount + (double)GroupedListOfReviewsCount);
         }
 
         public double getProbOfTermInClass(string term, int classnumb)
