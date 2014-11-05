@@ -14,8 +14,8 @@ namespace OthelloProject
         [STAThread]
         static void Main()
         {
-            /*
-            double[,] a = new double[9,9];
+            
+            /*double[,] a = new double[9,9];
             a[0, 0] = 0;
             a[0, 1] = 1;
             a[0, 2] = 1;
@@ -97,20 +97,18 @@ namespace OthelloProject
             a[8, 6] = 0;
             a[8, 7] = 1;
             a[8, 8] = 0;
-            cluster.clust(a);*/
+            cluster.splintNumbTimes(a,2);*/
             //Kaspers Path
             //List<Person> PersonList = Readfile.insertPeople("C:\\friendships.txt");
             //Chr Path
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Downloads\\friendships.txt");
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
-            //cluster.clust(OurMatrix.createMatrix(PersonList));
+            cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),4);
             //Kasper Test path
             //List<Person> PersonList = Readfile.insertPeople("C:\\C:\Users\\Kasper\\Documents\\Uni\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testfriendships.txt");
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Kasper\\Documents\\Uni\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\testreviews.txt");
             //cluster.clust(OurMatrix.createMatrix(PersonList));
             //OurMatrix.createMatrix(PersonList);
-            string test = "Also, make sure that the bean quality is #1 (not a problem with Jarblum products, but a concern with other Jamaican \"blends\" offered in stores and on the Internet). Thank heaven for the Blue Mountains (the \"blum\" in Jablum)!";
-            SentimentTokenizer.tokenize(test);
         }
     }
 }
