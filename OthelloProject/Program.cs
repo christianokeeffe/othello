@@ -26,10 +26,10 @@ namespace OthelloProject
             //*** Christian ***
             List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\testreviews.txt");
-            List<Person> PersonList = Readfile.insertPeople("\\friendships.reviews.txt");
+            List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\friendships.reviews.txt");
 
             //*** Program functionality ***
-            /*List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\SentimentTrainingData.txt");
+            //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\SentimentTrainingData.txt");
             Console.WriteLine("Rewiews loaded 1/7");
             //Console.ReadKey();
             prob p = new prob(ReviewList);
@@ -37,15 +37,15 @@ namespace OthelloProject
             System.GC.Collect();
             Console.WriteLine("Training done 2/7");
             //Console.ReadKey();
-            List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\friendships2.txt");
+            //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\friendships2.txt");
             Person.makeFriendList(PersonList);
             Console.WriteLine("Person- and FriendList made 3/7");
             //Console.ReadKey();
-            List<List<int>> clusters = cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),1);
+            List<List<int>> clusters = cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),2);
             Console.WriteLine("Clusters made 3/7");
             //Console.ReadKey();
-            /*prob p = new prob(ReviewList);
-            double correct = 0;
+            //prob p = new prob(ReviewList);
+            /*double correct = 0;
             double wrong = 0;
             double correctness = 0;
             for (int i = 0; i < 1000; i++)

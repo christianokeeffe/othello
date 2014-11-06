@@ -10,7 +10,7 @@ namespace OthelloProject
     {
         public static void writeOutput(List<Person> personlist)
         {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\\Users\\Mette\\Desktop\\Output.txt"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Output.txt"))
             {
                 foreach (Person person in personlist)
                 {

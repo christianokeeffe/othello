@@ -60,7 +60,11 @@ namespace OthelloProject
                             }
                         }
                     }
-                    double result = scores / count;
+                    double result = 0;
+                    if (count > 0)
+                    {
+                        result = scores / count;
+                    }
                     if (result > 2.5)
                     {
                         person.Buying = true;
