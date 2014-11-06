@@ -22,7 +22,6 @@ namespace OthelloProject
             Match hashTags = Regex.Match(inputlist, @"\#+([\w_]+[\w\'_\-]*[\w_]+|[\w])");
             while (hashTags.Success)
             {
-                string test = hashTags.Value;
                 returnlist.Add(hashTags.Value);
                 inputlist = inputlist.Replace(hashTags.Value, "");
                 hashTags = hashTags.NextMatch();
@@ -43,20 +42,22 @@ namespace OthelloProject
                 emoticon = emoticon.NextMatch();
             }
 
-            bool not = false;
+            bool negation = false;
+            Regex negationwords = new Regex(@"never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint");
+            Regex punctuations = new Regex(@"[.:;?!]");
             Match words = Regex.Match(inputlist, @"[a-z][a-z'\-_]+[a-z]|[+\-]?\d+[,/.:-]\d+[+\-]?|[\w_]+|\.(?:\s*\.){1,}|\S");
             while (words.Success)
             {
-                if (words.Value.EndsWith("'t") || words.Value == "not")
+                if (words.Value.EndsWith("'t") || negationwords.IsMatch(words.Value))
                 {
-                    not = true;
+                    negation = true;
                 }
-                if (words.Value == ".")
+                if (punctuations.IsMatch(words.Value))
                 {
-                    not = false;
+                    negation = false;
                 }
                 string poststring = "";
-                if(not)
+                if(negation)
                 {
                     poststring = "_NEG";
                 }
