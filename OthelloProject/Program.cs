@@ -29,7 +29,7 @@ namespace OthelloProject
             //List<Person> PersonList = Readfile.insertPeople("\\friendships.reviews.txt");
 
             //*** Program functionality ***
-            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\SentimentTrainingData.txt");
+            /*List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\SentimentTrainingData.txt");
             Console.WriteLine("Rewiews loaded 1/7");
             Console.ReadKey();
             prob p = new prob(ReviewList);
@@ -45,22 +45,6 @@ namespace OthelloProject
             Console.WriteLine("Clusters made 3/7");
             Console.ReadKey();*/
             prob p = new prob(ReviewList);
-            double correct = 0;
-            double wrong = 0;
-            double correctness = 0;
-            for (int i = 0; i < 1000; i++)
-            {
-                int response = p.getClassOfReview(ReviewList[i].Text);
-                if(response == (int)ReviewList[i].Score)
-                {
-                    correct++;
-                }
-                else
-                {
-                    wrong++;
-                }
-            }
-            correctness = correct / (wrong + correctness);
             /*Console.WriteLine("Training done 4/7");
             Console.ReadKey();
             Scores.computeScores(p, PersonList);

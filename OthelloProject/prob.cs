@@ -11,11 +11,107 @@ namespace OthelloProject
         List<Review> listOfReviews;
         List<List<Review>> GroupedListOfReviews = new List<List<Review>>();
         List<term> termList = new List<term>();
+        List<term> orgTermList = new List<term>();
         int listOfReviewsCount;
         int GroupedListOfReviewsCount;
         List<int> GroupedCounts = new List<int>();
-        public prob (List<Review> listOfReviews)
+
+        public prob(List<Review> inputListOfReviews)
         {
+            doInitialCalcs(inputListOfReviews);
+            /*int listCount = inputListOfReviews.Count;
+            int breakSize = listCount/10;
+            int thressholdmin = 0;
+            int thressholdmax = 100;
+            double startCorrectness = 0;
+            /*for (int i = 0; i < 10; i++)
+            {
+                /*List<Review> listToTrain = new List<Review>();
+                for (int j = 0; j < 10; j++)
+                {
+                    if(j == 9)
+                    {
+                        listToTrain.AddRange(inputListOfReviews.GetRange(j * breakSize, listCount - (j * breakSize)));
+                    }
+                    else if (j != i)
+                    {
+                        listToTrain.AddRange(inputListOfReviews.GetRange(j * breakSize, breakSize));
+                    }
+                }
+                int calcBreakSize = i ==9 ? 
+                    listCount - i * breakSize : 
+                    breakSize;
+                doProbCalcs(100);
+                startCorrectness += calcCorrectness(inputListOfReviews.GetRange(i * breakSize, calcBreakSize));
+            }
+            startCorrectness = startCorrectness / 10;
+            
+            while (true)
+            {
+                double correctness1 = 0;
+                double correctness2 = 0;
+                for (int i = 0; i < 10; i++)
+                {
+                    /*List<Review> listToTrain = new List<Review>();
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if(j == 9)
+                        {
+                            listToTrain.AddRange(inputListOfReviews.GetRange(j * breakSize, listCount - (j * breakSize)));
+                        }
+                        else if (j != i)
+                        {
+                            listToTrain.AddRange(inputListOfReviews.GetRange(j * breakSize, breakSize));
+                        }
+                    }
+                    int calcBreakSize = i ==9 ? 
+                        listCount - i * breakSize : 
+                        breakSize;
+                    doProbCalcs((thressholdmax - thressholdmin) / 3 + thressholdmin);
+                    correctness1 += calcCorrectness(inputListOfReviews.GetRange(i * breakSize, calcBreakSize));
+                    doProbCalcs(((thressholdmax - thressholdmin) / 3) * 2 + thressholdmin);
+                    correctness2 += calcCorrectness(inputListOfReviews.GetRange(i * breakSize, calcBreakSize));
+                }
+                correctness1 = correctness1 / 10;
+                correctness2 = correctness2 / 10;
+
+                if(correctness1 < correctness2)
+                {
+                    thressholdmin = (thressholdmax - thressholdmin) / 3 + thressholdmin;
+                }
+                else
+                {
+                    thressholdmax = ((thressholdmax - thressholdmin) / 3) * 2 + thressholdmin;
+                }
+            }*/
+        }
+
+        public double calcCorrectness(List<Review> listToTest)
+        {
+            double correct = 0;
+            double wrong = 0;
+            double correctness = 0;
+            for (int i = 0; i < listToTest.Count; i++)
+            {
+                int response = getClassOfReview(listToTest[i].Text);
+                if (response == (int)listToTest[i].Score)
+                {
+                    correct++;
+                }
+                else
+                {
+                    wrong++;
+                }
+            }
+            correctness = correct / (wrong + correct);
+            return correctness;
+        }
+
+        public void doInitialCalcs(List<Review> listOfReviews)
+        {
+            GroupedListOfReviews = new List<List<Review>>();
+            GroupedCounts = new List<int>();
+            termList = new List<term>();
             this.listOfReviews = listOfReviews;
             for(int i = 0; i < 5; i++)
             {
@@ -89,13 +185,9 @@ namespace OthelloProject
                     }
                 }
             }
-            for(int i = 0; i < termList.Count; i++)
-            {
-                for(int j = 0; j < 5; j++)
-            {
-                    termList[i].termProb.Add(((double)termList[i].numbInClass[j] + 1.0) / ((double)GroupedListOfReviews[j].Count + (double)termList.Count));
-                }
-            }
+
+            orgTermList = termList;
+
             listOfReviewsCount = listOfReviews.Count;
             GroupedListOfReviewsCount = GroupedListOfReviews.Count;
             
@@ -104,6 +196,26 @@ namespace OthelloProject
             }
             listOfReviews = null;
             GroupedListOfReviews = null;
+            doProbCalcs(89);
+        }
+
+        public void doProbCalcs(int thresshold)
+        {
+            termList = orgTermList.ToArray().ToList();
+            termList = termList.OrderBy(o => o.getCount()).ToList();
+
+            termList = termList.GetRange(0, (int)((double)termList.Count * ((double)thresshold / 100)));
+
+            termList = termList.OrderBy(o => o.termName).ToList();
+
+            for (int i = 0; i < termList.Count; i++)
+            {
+                termList[i].termProb.Clear();
+                for (int j = 0; j < 5; j++)
+                {
+                    termList[i].termProb.Add(((double)termList[i].numbInClass[j] + 1.0) / ((double)GroupedCounts[j] + (double)termList.Count));
+                }
+            }
         }
 
         public double getPofClass(int classnumb)
@@ -169,7 +281,11 @@ namespace OthelloProject
                 double score = Math.Log10(getPofClass(i));
                 for (int j = 0; j < inputTokens.Count; j++)
                 {
-                    score += Math.Log10(getProbOfTermInClass(inputTokens[j], i));
+                    double tempScore = getProbOfTermInClass(inputTokens[j], i);
+                    if (tempScore > 0)
+                    {
+                        score += Math.Log10(tempScore);
+                    }
                 }
                 scores.Add(score);
             }
