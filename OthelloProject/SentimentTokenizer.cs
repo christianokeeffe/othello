@@ -53,12 +53,13 @@ namespace OthelloProject
                 emoticon = emoticon.NextMatch();
             }
 
-
-            foreach (List sentence in MaxentTagger.tokenizeText(new StringReader(inputlist)).toArray())
+            /*string stringToToke = inputlist;
+            inputlist = "";
+            foreach (List sentence in MaxentTagger.tokenizeText(new StringReader(stringToToke.ToLower())).toArray())
             {
-                var tSentence = tagger.tagSentence(sentence).ToString();
-            }  
-
+                inputlist += tagger.tagSentence(sentence).ToString();
+            }  */
+            
             bool negation = false;
             Regex negationwords = new Regex(@"never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint");
             Regex punctuations = new Regex(@"[.:;?!]");
