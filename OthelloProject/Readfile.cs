@@ -16,6 +16,7 @@ namespace OthelloProject
             List<Person> personList = new List<Person>();
             Person tempPerson = new Person();
             int IDcounter = 0;
+            SentimentTokenizer tokenizer = new SentimentTokenizer();
             while(!file.EndOfStream)
             {
                 string line = file.ReadLine();
@@ -33,11 +34,11 @@ namespace OthelloProject
                 if (words[0] == "summary")
                 {
                     tempPerson.Summary = words[1];
-                    tempPerson.SummaryTokens = SentimentTokenizer.tokenize(words[1]);
+                    tempPerson.SummaryTokens = tokenizer.tokenize(words[1]);
                 }
                 if (words[0] == "review")
                 {
-                    tempPerson.ReviewTokens = SentimentTokenizer.tokenize(words[1]);
+                    tempPerson.ReviewTokens = tokenizer.tokenize(words[1]);
                     tempPerson.Review = words[1];
                     personList.Add(tempPerson);
                 }
@@ -49,7 +50,7 @@ namespace OthelloProject
         public static List<Review> loadReviews(string inputPath) 
         {
             System.IO.StreamReader file = new System.IO.StreamReader(inputPath);
-
+            SentimentTokenizer tokenizer = new SentimentTokenizer();
             List<Review> reviewList = new List<Review>();
             Review tempReview = new Review();
 
@@ -84,11 +85,11 @@ namespace OthelloProject
                 }
                 if (words[0] == "review/summary")
                 {
-                    tempReview.Summary = SentimentTokenizer.tokenize(words[1]);
+                    tempReview.Summary = tokenizer.tokenize(words[1]);
                 }
                 if (words[0] == "review/text")
                 {
-                    tempReview.Text = SentimentTokenizer.tokenize(words[1]);
+                    tempReview.Text = tokenizer.tokenize(words[1]);
                     reviewList.Add(tempReview);
                 }
             }

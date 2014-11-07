@@ -1,4 +1,8 @@
-﻿using System;
+﻿using edu.stanford.nlp.ling;
+using edu.stanford.nlp.tagger.maxent;
+using java.io;
+using java.util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +13,14 @@ namespace OthelloProject
 {
     class SentimentTokenizer
     {
-        public static List<string> tokenize(string input)
+        public const string Model = @"C:\\Users\\Christian\\Source\\Repos\\othello\\OthelloProject\\stanford-postagger-full-2014-06-16\\models\\wsj-0-18-bidirectional-nodistsim.tagger";
+        MaxentTagger tagger;
+        public SentimentTokenizer()
+        {
+            tagger = new MaxentTagger(Model);
+        }
+
+        public List<string> tokenize(string input)
         {
             List<string> returnlist = new List<string>();
             string inputlist = input;
@@ -41,6 +52,12 @@ namespace OthelloProject
                 inputlist = inputlist.Replace(emoticon.Value, "");
                 emoticon = emoticon.NextMatch();
             }
+
+
+            foreach (List sentence in MaxentTagger.tokenizeText(new StringReader(inputlist)).toArray())
+            {
+                var tSentence = tagger.tagSentence(sentence).ToString();
+            }  
 
             bool negation = false;
             Regex negationwords = new Regex(@"never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint");
