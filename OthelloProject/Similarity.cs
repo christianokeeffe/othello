@@ -29,5 +29,15 @@ namespace OthelloProject
             double result = top / bottom;
             return result;
         }
+
+        public static List<Review> getClosestReviews(List<Review> reviewlist, Review reviewToCompare, int k)
+        {
+
+        }
+
+        public static double getCousineScore(Review reviewa, Review reviewb)
+        {
+            return 1;
+        }
     }
 }

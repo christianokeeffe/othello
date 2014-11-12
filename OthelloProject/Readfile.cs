@@ -53,9 +53,10 @@ namespace OthelloProject
             SentimentTokenizer tokenizer = new SentimentTokenizer();
             List<Review> reviewList = new List<Review>();
             Review tempReview = new Review();
-
-            while (!file.EndOfStream)
+            int i = 0;
+            while (!file.EndOfStream && reviewList.Count <= 1000 && i%10 == 0)
             {
+                i++;
                 string line = file.ReadLine();
                 string[] words = line.Split(':');
                 if (words[0] == "product/productId")
@@ -69,7 +70,7 @@ namespace OthelloProject
                 }
                 if (words[0] == "review/profileName")
                 {
-                    tempReview.ProfilName = words[1].Trim();
+                    tempReview.ProfilName = "Chr";
                 }
                 if (words[0] == "review/helpfulness")
                 {
