@@ -14,7 +14,11 @@ namespace OthelloProject
             Dictionary<string, double> result = new Dictionary<string, double>();
             foreach(KeyValuePair<string, double> k in listOfTerms)
             {
-                result.Add(k.Key, (1 + Math.Log10(k.Value))* IDF[k.Key] / termsInAll);
+                double d = 0;
+                if(IDF.TryGetValue(k.Key, out d))
+                {
+                    result.Add(k.Key, (1 + Math.Log10(k.Value))* d / termsInAll);
+                }
             }
 
             listOfTerms = result;
