@@ -53,18 +53,19 @@ namespace OthelloProject
                 emoticon = emoticon.NextMatch();
             }
 
-            /*string stringToToke = inputlist;
+            string stringToToke = inputlist;
             inputlist = "";
             foreach (List sentence in MaxentTagger.tokenizeText(new StringReader(stringToToke.ToLower())).toArray())
             {
                 inputlist += tagger.tagSentence(sentence).ToString();
-            }  */
+            }  
             
             bool negation = false;
-            Match taggedwords = Regex.Match(inputlist, @"\w+\/JJ|\w+\/VB");
+            Regex verbad = new Regex(@"\w+\/JJ|\w+\/VB");
+
             Regex negationwords = new Regex(@"never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint");
             Regex punctuations = new Regex(@"[.:;?!]");
-            Match words = Regex.Match(inputlist, @"[a-z][a-z'\-_]+[a-z]|[+\-]?\d+[,/.:-]\d+[+\-]?|[\w_]+|\.(?:\s*\.){1,}|\S");
+            Match words = Regex.Match(inputlist, @"[a-z][a-z'\-_]+[a-z]+(\/JJ|\/VB)|[+\-]?\d+[,/.:-]\d+[+\-]?|[\w_]+|\.(?:\s*\.){1,}|\S");
             while (words.Success)
             {
                 if (words.Value.EndsWith("'t") || negationwords.IsMatch(words.Value))
@@ -80,12 +81,17 @@ namespace OthelloProject
                 {
                     poststring = "_NEG";
                 }
-                if (IsAllUpper(words.Value))
+                if (verbad.IsMatch(words.Value))
                 {
-                    returnlist.Add(words.Value + poststring);
-                }
-                else{
-                    returnlist.Add(words.Value.ToLower() + poststring);
+                    string wordToAdd = words.Value.Replace("/JJ", "").Replace("/VB", "");
+                    if (IsAllUpper(wordToAdd))
+                    {
+                        returnlist.Add(wordToAdd + poststring);
+                    }
+                    else
+                    {
+                        returnlist.Add(wordToAdd.ToLower() + poststring);
+                    }
                 }
                 words = words.NextMatch();
             }

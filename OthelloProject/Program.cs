@@ -26,13 +26,13 @@ namespace OthelloProject
             //SentimentTokenizer.tokenize("Hej :-) #altfornice #12");
 
             //*** Christian ***
-            //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
-            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\testreviews.txt");
-            //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\friendships.reviews.txt");
+            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
+            //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\testreviews.txt");
+            List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\friendships.reviews.txt");
 
             //*** Program functionality ***
             //List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Mette\\Desktop\\P7 Alt\\P7\\Undervisning\\SentimentTrainingData.txt");
-            /*Console.WriteLine("Rewiews loaded 1/7");
+            Console.WriteLine("Rewiews loaded 1/7");
             //Console.ReadKey();
             prob p = new prob(ReviewList);
             ReviewList = null;
@@ -44,7 +44,7 @@ namespace OthelloProject
             Console.WriteLine("Person- and FriendList made 3/7");
             //Console.ReadKey();
             List<List<int>> clusters = cluster.splintNumbTimes(OurMatrix.createMatrix(PersonList),2);
-            Console.WriteLine("Clusters made 3/7");*/
+            Console.WriteLine("Clusters made 3/7");
             //Console.ReadKey();
             /*prob p = new prob(ReviewList);
             double correct = 0;
@@ -63,7 +63,7 @@ namespace OthelloProject
                 }
             }
             correctness = correct / (wrong + correctness);*/
-            /*Console.WriteLine("Training done 4/7");
+            Console.WriteLine("Training done 4/7");
             Console.ReadKey();
             Scores.computeScores(p, PersonList);
             Console.WriteLine("Scores computed 5/7");
@@ -73,7 +73,7 @@ namespace OthelloProject
             Console.ReadKey();
             Writefile.writeOutput(PersonList);
             Console.WriteLine("Written to file 7/7");
-            Console.ReadKey();*/
+            Console.ReadKey();
         }
     }
 }

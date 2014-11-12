@@ -194,9 +194,12 @@ namespace OthelloProject
             foreach (List<Review> review in GroupedListOfReviews) {
                 GroupedCounts.Add(review.Count);
             }
+
+            doProbCalcs(100);
+            double correctness = calcCorrectness(listOfReviews);
             listOfReviews = null;
             GroupedListOfReviews = null;
-            doProbCalcs(89);
+            //doProbCalcs(89);
         }
 
         public void doProbCalcs(int thresshold)
