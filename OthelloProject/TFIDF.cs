@@ -81,7 +81,10 @@ namespace OthelloProject
 
                 foreach (string s in r.Text)
                 {
-                    temp.listOfTerms.Add(s, r.Text.Count(x => x == s));
+                    if(!temp.listOfTerms.Keys.Contains(s))
+                    {
+                        temp.listOfTerms.Add(s, r.Text.Count(x => x == s));
+                    }
                 }
 
                 temp.NormilizeVector(countOfTerms, UpdatedbagOfWords);
