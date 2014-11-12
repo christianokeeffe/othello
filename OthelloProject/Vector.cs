@@ -11,10 +11,13 @@ namespace OthelloProject
         public Dictionary<string, double> listOfTerms = new Dictionary<string, double>();
         public void NormilizeVector(int termsInAll, Dictionary<string, double> IDF) 
         {
+            Dictionary<string, double> result = new Dictionary<string, double>();
             foreach(KeyValuePair<string, double> k in listOfTerms)
             {
-                listOfTerms[k.Key] = (1 + Math.Log10(k.Value))* IDF[k.Key] / termsInAll;
+                result.Add(k.Key, (1 + Math.Log10(k.Value))* IDF[k.Key] / termsInAll);
             }
+
+            listOfTerms = result;
         }
 
         public double calSim(Vector v) 
