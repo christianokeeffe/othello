@@ -32,12 +32,29 @@ namespace OthelloProject
 
         public static List<Review> getClosestReviews(List<Review> reviewlist, Review reviewToCompare, int k)
         {
-
+            List<Review> returnList = new List<Review>();
+            List<KeyValuePair<Review,double>> scoreList = new List<KeyValuePair<Review,double>>();
+            for(int i = 0; i < reviewlist.Count; i++)
+            {
+                double score = getCousineScore(reviewToCompare,reviewlist[i]);
+                scoreList.Add(new KeyValuePair<Review, double>(reviewlist[i], score));
+            }
+            scoreList = scoreList.OrderBy(o=>o.Value).ToList();
+            for (int i = 0; i < k; i++ )
+            {
+                if(i < scoreList.Count)
+                {
+                    returnList.Add(scoreList[scoreList.Count -1 - i].Key);
+                }
+            }        
+        
+            return returnList;
         }
 
         public static double getCousineScore(Review reviewa, Review reviewb)
         {
-            return 1;
+            Random r = new Random(DateTime.UtcNow.Millisecond);
+            return r.NextDouble();
         }
     }
 }

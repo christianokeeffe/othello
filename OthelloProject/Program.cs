@@ -26,8 +26,14 @@ namespace OthelloProject
             //SentimentTokenizer.tokenize("Hej :-) #altfornice #12");
 
             //*** Christian ***
-            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt");
-            List<Review> ReviewListToCompare = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\ChrMetKas\\søgemaskine\\testreviews.txt");
+            List<KeyValuePair<Review, List<Review>>> compareList = new List<KeyValuePair<Review, List<Review>>>();
+            List<Review> ReviewList = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\SentimentTrainingData.txt", true);
+            List<Review> ReviewListToCompare = Readfile.loadReviews("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\TestSentiment.txt", false);
+            for (int i = 0; i < ReviewListToCompare.Count; i++ )
+            {
+                compareList.Add(new KeyValuePair<Review, List<Review>>(ReviewListToCompare[i], Similarity.getClosestReviews(ReviewList, ReviewListToCompare[i], 5)));
+            }
+                
             //List<Person> PersonList = Readfile.insertPeople("C:\\Users\\Christian\\Dropbox\\Documents\\Arbejde\\UNI\\P7\\Undervisning\\Web Intelligence\\friendships.reviews.txt");
 
             //*** Program functionality ***

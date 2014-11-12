@@ -47,14 +47,14 @@ namespace OthelloProject
             file.Close();
             return personList;
     }
-        public static List<Review> loadReviews(string inputPath) 
+        public static List<Review> loadReviews(string inputPath, bool productDiff) 
         {
             System.IO.StreamReader file = new System.IO.StreamReader(inputPath);
             SentimentTokenizer tokenizer = new SentimentTokenizer();
             List<Review> reviewList = new List<Review>();
             Review tempReview = new Review();
             int i = 0;
-            while (!file.EndOfStream && reviewList.Count <= 1000 && i%10 == 0)
+            while (!file.EndOfStream && reviewList.Count <= 1000 )
             {
                 i++;
                 string line = file.ReadLine();
@@ -91,7 +91,10 @@ namespace OthelloProject
                 if (words[0] == "review/text")
                 {
                     tempReview.Text = tokenizer.tokenize(words[1]);
-                    reviewList.Add(tempReview);
+                    if (i % 10 == 0 || !productDiff)
+                    {
+                        reviewList.Add(tempReview);
+                    }
                 }
             }
             return reviewList;
