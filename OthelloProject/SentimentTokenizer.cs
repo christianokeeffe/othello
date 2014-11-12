@@ -13,12 +13,12 @@ namespace OthelloProject
 {
     class SentimentTokenizer
     {
-        public const string Model = @"C:\\Users\\Christian\\Source\\Repos\\othello\\OthelloProject\\stanford-postagger-full-2014-06-16\\models\\wsj-0-18-bidirectional-nodistsim.tagger";
+        /*public const string Model = @"C:\\Users\\Christian\\Source\\Repos\\othello\\OthelloProject\\stanford-postagger-full-2014-06-16\\models\\wsj-0-18-bidirectional-nodistsim.tagger";
         MaxentTagger tagger;
         public SentimentTokenizer()
         {
             tagger = new MaxentTagger(Model);
-        }
+        }*/
 
         public List<string> tokenize(string input)
         {
@@ -61,7 +61,7 @@ namespace OthelloProject
             }  */
             
             bool negation = false;
-            Match taggedwords = Regex.Match(inputlist, @"\w+\/JJ|\w+\/VB");
+            //Match taggedwords = Regex.Match(inputlist, @"\w+\/JJ|\w+\/VB");
             Regex negationwords = new Regex(@"never|no|nothing|nowhere|noone|none|not|havent|hasnt|hadnt|cant|couldnt|shouldnt|wont|wouldnt|dont|doesnt|didnt|isnt|arent|aint");
             Regex punctuations = new Regex(@"[.:;?!]");
             Match words = Regex.Match(inputlist, @"[a-z][a-z'\-_]+[a-z]|[+\-]?\d+[,/.:-]\d+[+\-]?|[\w_]+|\.(?:\s*\.){1,}|\S");
