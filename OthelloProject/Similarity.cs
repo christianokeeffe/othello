@@ -33,12 +33,15 @@ namespace OthelloProject
         public static List<Review> getClosestReviews(List<Review> reviewlist, Review reviewToCompare, int k)
         {
             List<Review> returnList = new List<Review>();
+            TFIDF tfidfObject = new TFIDF(reviewlist);
+
             List<KeyValuePair<Review,double>> scoreList = new List<KeyValuePair<Review,double>>();
-            for(int i = 0; i < reviewlist.Count; i++)
+            /*for(int i = 0; i < reviewlist.Count; i++)
             {
                 double score = getCousineScore(reviewToCompare,reviewlist[i]);
                 scoreList.Add(new KeyValuePair<Review, double>(reviewlist[i], score));
-            }
+            }*/
+            scoreList = tfidfObject.calSimilarity(reviewToCompare);
             scoreList = scoreList.OrderBy(o=>o.Value).ToList();
             for (int i = 0; i < k; i++ )
             {

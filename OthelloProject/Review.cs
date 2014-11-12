@@ -8,6 +8,7 @@ namespace OthelloProject
 {
     class Review
     {
+        public int reviewID;
         private string _productID;
         private string _userID;
         private string _profileName;

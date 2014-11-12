@@ -162,6 +162,7 @@
     <Compile Include="Similarity.cs" />
     <Compile Include="Readfile.cs" />
     <Compile Include="term.cs" />
+    <Compile Include="TFIDF.cs" />
     <Compile Include="Writefile.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
