@@ -10,7 +10,8 @@ namespace OthelloProject
     {
         public List<Review> listOfReview = new List<Review>();
 
-        public Dictionary<string, double> bagOfWords = new Dictionary<string, double>();
+        //public Dictionary<string, double> bagOfWords = new Dictionary<string, double>();
+        public Dictionary<string, double> UpdatedbagOfWords = new Dictionary<string, double>();
         public Dictionary<int, Vector> listOfVectors = new Dictionary<int, Vector>();
 
         double wtTemp = 0;
@@ -32,7 +33,7 @@ namespace OthelloProject
             {
                 temp.listOfTerms.Add(t, r.Text.Count(x => x == t));
             }
-            temp.NormilizeVector(bagOfWords.Count, bagOfWords);
+            temp.NormilizeVector(UpdatedbagOfWords.Count, UpdatedbagOfWords);
 
             foreach(KeyValuePair<int, Vector> vp in listOfVectors)
             {
@@ -44,6 +45,8 @@ namespace OthelloProject
 
         private void calculateTFAndIDF()
         {
+            Dictionary<string, double> bagOfWords = new Dictionary<string, double>();
+
             int reviewID = 0;
             double count = 0;
 
@@ -66,7 +69,7 @@ namespace OthelloProject
 
             foreach (KeyValuePair<string, double> k in bagOfWords)
             {
-                bagOfWords[k.Key] = Math.Log10(countOfReviews / k.Value);
+                UpdatedbagOfWords.Add(k.Key,Math.Log10(countOfReviews / k.Value));
             }
 
             int countOfTerms = bagOfWords.Count();
@@ -81,7 +84,7 @@ namespace OthelloProject
                     temp.listOfTerms.Add(s, r.Text.Count(x => x == s));
                 }
 
-                temp.NormilizeVector(countOfTerms, bagOfWords);
+                temp.NormilizeVector(countOfTerms, UpdatedbagOfWords);
                 listOfVectors.Add(reviewID, temp);
 
                 reviewID++;
